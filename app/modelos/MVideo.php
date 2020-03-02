@@ -203,6 +203,33 @@
             $lista = $this->db->registros();
             return $lista;
         }
+        public function ultimoRegistro()
+        {
+            $this->db->query("SELECT cod_video FROM video ORDER BY cod_video DESC LIMIT 1");
+            $ultimo_video = $this->db->registro();
+            return $ultimo_video;
+        }
+
+        public function alternativosTitle($id)
+        {
+            $this->db->query("SELECT title FROM alternative_title WHERE cod_video ='$id'");
+            $lista = $this->db->registros();
+            return $lista;
+        }
+
+        public function actoresName($id)
+        {
+            $this->db->query("SELECT name FROM main_actor WHERE cod_video ='$id'");
+            $lista = $this->db->registros();
+            return $lista;
+        }
+
+        public function nominacionesTipo($id)
+        {
+            $this->db->query("SELECT tipo FROM nomination WHERE cod_video ='$id'");
+            $lista = $this->db->registros();
+            return $lista;
+        }
 
                 
     }
