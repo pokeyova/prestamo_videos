@@ -63,5 +63,25 @@
             </button>
             <!-- <a class="navbar-brand" href="/sisvideo/borrowing">PRESTAMOS</a> -->
         </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <?php if($_SESSION['type'] == 'ADMINISTRADOR') :?>
+                    <?php require RUTA.'/vistas/includes/menuAdmin.php';?>
+                <?php endif;?>
+                <?php if($_SESSION['type'] == 'AUXILIAR') :?>
+                    <?php require RUTA.'/vistas/includes/menuAuxiliar.php';?>
+                <?php endif;?>
+            </ul>
 
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="<?php echo RUTA_URL;?>/login/logout">
+                        <i class="fa fa-sign-in-alt"></i>
+                        <span>SALIR</span>
+                    </a>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
 </nav>
