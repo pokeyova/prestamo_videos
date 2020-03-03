@@ -55,6 +55,13 @@
     </div>
 </div>
 
-
+<script src="<?php echo RUTA_URL; ?>/public/assets/jquery-3.2.1.js"></script>
+<script src="<?php echo RUTA_URL; ?>/public/assets/bootstrap-3.3.7/dist/js/bootstrap.js"></script>
+<script>
+    console.log('XXXXXXXXXXXXXXXXXXXXXXXXXX');
+    $("input[type=text]").focus(function(){
+        this.select();
+    });
+</script>
 </body>
 </html>
