@@ -81,6 +81,26 @@ class Client extends Controlador{
             header('location:/sisvideo/client?error');
         }
     }
+    public function desbloquear($id)
+    {
+        $respuesta = $this->bloqueo->actualizarStatus($id,0);
+        if($respuesta)
+        {
+            header('location:/sisvideo/client?desbloqueado');
+        }
+        else{
+            header('location:/sisvideo/client/?error');
+        }
+    }
 
-
+    public function destroy($id){
+        $respuesta = $this->client->actualizarStatus($id,0);
+        if($respuesta)
+        {
+            header('location:/sisvideo/client?eliminado');
+        }
+        else{
+            header('location:/sisvideo/client/?error');
+        }
+    }
 }
