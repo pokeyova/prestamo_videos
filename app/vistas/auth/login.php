@@ -19,6 +19,42 @@
 </head>
 <body>
 
+<div class="contenedor-login">
+    <div class="header-login">
+        <h1 class="titulo-empresa"><?php echo $datos['empresa'];?></h1>
+        <img src="<?php echo RUTA_URL; ?>/public/imgs/logo.jpg" class="logo-empresa" alt="Logo">
+    </div>
+    <div class="body-login">
+        <h3 class="titulo-form">INICIAR SESIÓN</h3>
+        <form action="<?php echo RUTA_URL; ?>/login/comprueba" method="POST">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-user"></i>
+                </span>
+                <input type="text" name="name" value="<?php echo $old_name; ?>" placeholder="Usuario" required class="form-control" autofocus>
+            </div>
+            <br>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-key"></i>
+                </span>
+                <input type="password" name="password" placeholder="Contraseña" required class="form-control">
+            </div>
+            <br>
+            <?php if(isset($_GET['name'])):?>
+                <div class="form-group">
+                    <div class="alert alert-danger">
+                        El usuario o contraseña son incorrectos
+                    </div>
+                </div>
+            <?php endif;?>
+            <div class="form-group" style="display:flex; justify-content: center;">
+                <button type="submit" class="btn btn-default">Acceder</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 
 </body>
 </html>
