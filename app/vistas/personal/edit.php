@@ -46,6 +46,45 @@
                                 <input type="number" name="ci" id="ci" value="<?php echo $datos['personal']->ci;?>" class="form-control" required>
                             </div>
                         </div>
+                        <div class="col-md-2">
+                                <label>Expedido*:</label>
+                                <select name="issued" id="issued" class="form-control" required>
+                                    <option value="" disabled selected>Seleccione</option>
+                                    <option value="LP" <?php if($datos['personal']->issued =='LP') echo 'selected';?>>LA PAZ</option>
+                                    <option value="CB" <?php if($datos['personal']->issued =='CB') echo 'selected';?>>COCHABAMBA</option>
+                                    <option value="SC" <?php if($datos['personal']->issued =='SC') echo 'selected';?>>SANTA CRUZ</option>
+                                    <option value="PT" <?php if($datos['personal']->issued =='PT') echo 'selected';?>>POTOSI</option>
+                                    <option value="CH" <?php if($datos['personal']->issued =='CH') echo 'selected';?>>CHUQUISACA</option>
+                                    <option value="TJ" <?php if($datos['personal']->issued =='TJ') echo 'selected';?>>TARIJA</option>
+                                    <option value="BN" <?php if($datos['personal']->issued =='BN') echo 'selected';?>>BENI</option>
+                                    <option value="PD" <?php if($datos['personal']->issued =='PD') echo 'selected';?>>PANDO</option>
+                                    <option value="OR" <?php if($datos['personal']->issued =='OR') echo 'selected';?>>ORURO</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Correo*:</label>
+                                    <input type="email" name="email" class="form-control" value="<?php echo $datos['personal']->email;?>" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Usuario*:</label>
+                                    <select name="type" id="type" class="form-control" required>
+                                        <option value="" disabled selected>Seleccione</option>
+                                        <option value="ADMINISTRADOR" <?php if($datos['personal']->tipo =='ADMINISTRADOR') echo'selected';?>>ADMINISTRADOR</option>
+                                        <option value="AUXILIAR" <?php if($datos['personal']->tipo =='AUXILIAR') echo'selected';?>>AUXILIAR</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-success">Actualizar</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </form>
