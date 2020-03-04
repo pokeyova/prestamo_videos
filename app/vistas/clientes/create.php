@@ -105,3 +105,11 @@
 
 
 
+<?php require RUTA.'/vistas/inc/footer.php';?>
+
+<script src="<?php echo RUTA_URL;?>/public/js/geolocalizacion.js"></script>
+
+
+</body>
+</html>
+
