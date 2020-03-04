@@ -45,8 +45,7 @@
                                 <label>Carnet de identidad*:</label>
                                 <input type="number" name="ci" id="ci" value="<?php echo $datos['personal']->ci;?>" class="form-control" required>
                             </div>
-                        </div>
-                        <div class="col-md-2">
+                            <div class="col-md-2">
                                 <label>Expedido*:</label>
                                 <select name="issued" id="issued" class="form-control" required>
                                     <option value="" disabled selected>Seleccione</option>
@@ -83,6 +82,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <button type="submit" class="btn btn-success">Actualizar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -91,4 +91,7 @@
     </div>
 </div>
 
+<?php require RUTA.'/vistas/inc/footer.php';?>
 
+</body>
+</html>
