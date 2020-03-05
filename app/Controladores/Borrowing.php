@@ -38,5 +38,53 @@ class Borrowing extends Controlador{
                     $array_alternativos[$video->cod_video] .= $alternativo->title.' ';
                 }
             }
+            $actores = $this->video->actoresName($video->cod_video);
+            $array_actores[$video->cod_video] = '';
+            if(count($actores) > 0)
+            {
+                foreach($actores as $actor)
+                {
+                    $array_actores[$video->cod_video] .= $actor->name.' ';
+                }
+            }
 
+            $nominaciones = $this->video->nominacionesTipo($video->cod_video);
+            $array_nominaciones[$video->cod_video] = '';
+            if(count($nominaciones) > 0)
+            {
+                foreach($nominaciones as $nominacion)
+                {
+                    $array_nominaciones[$video->cod_video] .= $nominacion->tipo.' ';
+                }
+            }
+        }
+
+
+        $this->vista('prestamos/create',[
+                        'request' => 'borrowing',
+                        'videos' => $videos,
+                        'generos' => $generos,
+                        'clientes' => $clientes,
+                        'array_alternativos' => $array_alternativos,
+                        'array_actores' => $array_actores,
+                        'array_nominaciones' => $array_nominaciones,
+                        ]);
+    }
+
+    public function store(){
+        
+    }
+
+    public function edit($id){
+        
+    }
+
+    public function update($id){
+        
+    }
+
+    public function destroy($id){
+        
+    }
+}
 }
