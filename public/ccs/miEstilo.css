@@ -128,3 +128,56 @@ header .usuario .estado i{
     font-size: 0.8em;
     color:rgb(0, 201, 0);
 }
+header .redes_sociales{
+    background:rgba(255, 255, 255, 0.836);
+    position: absolute;
+    display:flex;
+    right: 40px;
+    top:60px;
+}
+
+header .redes_sociales div{
+    margin:10px;
+}
+
+header .redes_sociales div i{
+    font-size: 1.8em;
+    transition: all 0.2s;
+}
+
+header .redes_sociales div i:hover{
+    cursor: pointer;
+}
+
+header .redes_sociales div.facebook i{
+    color:#0f40a3;
+}
+
+header .redes_sociales div.twiter i{
+    color:rgb(0, 181, 253);
+}
+
+header .redes_sociales div.instagram i{
+    color:rgb(253,29,29);
+}
+
+header .redes_sociales div.youtube i{
+    color:rgb(221, 0, 0);
+}
+
+header .redes_sociales div.facebook i:hover{
+    transform: scale(1.1);
+    color:#0053fa;
+}
+header .redes_sociales div.twiter i:hover{
+    transform: scale(1.1);
+    color:rgb(0, 141, 197);
+}
+header .redes_sociales div.instagram i:hover{
+    transform: scale(1.1);
+    color:rgb(255, 0, 0);
+}
+header .redes_sociales div.youtube i:hover{
+    transform: scale(1.1);
+    color:rgb(247, 0, 0);
+}
