@@ -1,0 +1,8 @@
+.contenedor_videos{
+    max-height: 450px;
+    overflow: auto;
+}
+
+.contenedor_buscador{
+    height: auto!important;
+}
