@@ -84,3 +84,41 @@
     </div>
 </div>
 <br>
+<?php require RUTA.'/vistas/modal/eliminar.php';?>
+
+<?php require RUTA.'/vistas/inc/footer.php';?>
+
+<script type="text/javascript">
+    $(function () {
+    $('.data-table').DataTable({
+          responsive: true,
+          "order": [[ 0, "asc" ]],
+          "columns": [
+                    { "width": "5%" },
+                     null,
+                     null,
+                     null,
+                    { "width": "17%" },
+           ],
+           pageLength:25,
+           language:lenguaje
+      });
+    });
+
+    // ELIMINAR
+    $(document).on('click','table.data-table tbody tr td.btns-opciones a.eliminar',function(e){
+        e.preventDefault();
+        let registro = $(this).parents('tr').children('td').eq(1).text();
+        $('#mensajeEliminar').html(`¿Está seguro(a) de eliminar el género <b>${registro}</b>?`);
+        let url = $(this).attr('data-url');
+        $('#formEliminar').prop('action',url);
+    });
+
+    $('#btnEliminar').click(function(){
+        $('#formEliminar').submit();
+    });
+
+</script>
+
+</body>
+</html>
