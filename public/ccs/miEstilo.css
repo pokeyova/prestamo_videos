@@ -181,3 +181,150 @@ header .redes_sociales div.youtube i:hover{
     transform: scale(1.1);
     color:rgb(247, 0, 0);
 }
+.navbar.navbar-default.scroll{
+    background:rgb(199, 0, 0);
+}
+
+.navbar.navbar-default{
+    width: 100%;
+    margin:0px;
+    border-radius:0px;
+    border:none;
+    background:rgb(206, 0, 0);
+    /* position: fixed!important; */
+    z-index: 50;
+    transition: all 0.3s;
+}
+
+.navbar.navbar-default.fixed{
+    position: fixed;
+    top:0px;
+    width: 100%;
+}
+
+
+.nav.navbar-nav li > a:focus{
+    color:rgb(41, 104, 187);
+}
+
+.nav.navbar-nav li.active > a{
+    background:rgb(41, 104, 187);
+    color:white;
+}
+
+.nav.navbar-nav li.active a:hover{
+    background:rgb(41, 104, 187);
+    color:white;
+}
+  
+.carusel{
+    margin-top: 1px;
+}
+.carusel .container-fluid{
+    padding:0px;
+}
+
+.carousel-inner{
+    max-height: 500px!important;
+}
+
+.carousel-inner > .item > h3, p{
+    /* color:rgb(255, 255, 255); */
+    /* font-weight:900; */
+}
+
+.carousel-inner .item img{
+    /* opacity: 0.7; */
+    max-height: 490px;
+}
+
+.navbar-header a.navbar-brand{
+    color:white;
+}
+
+.navbar-header a.navbar-brand:hover{
+    color:white;
+}
+
+.nav.navbar-nav li a{
+    color:white;
+}
+
+.nav.navbar-nav li a:hover{
+    background: rgb(77, 154, 255);
+    color:white;
+}
+
+.media{
+    padding: 10px;
+    background:white;
+    border-radius: 5px;
+    box-shadow: -10px 10px 10px 0px rgb(50, 53, 50)
+}
+
+.media .media-body h4{
+    font-size: 1.5em;
+    font-weight: 900;
+}
+
+.media .media-body{
+    text-align: justify;
+    font-size: 1.3em;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.media .media-left.media-middle img{
+    width: 280px;
+    height: 280px;
+}
+
+@media (max-width:1025px){
+
+    .carousel-inner{
+        max-height: 300px!important;
+    }
+
+    .carousel-inner .item img{
+        max-height: 300px!important;
+    }
+    .carousel-inner .item .carousel-caption p{
+        display: none;
+    }
+}
+/* SUB MENU */
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover{
+    background:rgb(0, 110, 255);
+    color:white;
+}
+
+.navbar-nav>li>.dropdown-menu{
+    background:rgb(33, 152, 231);
+}
+
+.navbar-nav>li>.dropdown-menu:focus{
+    background:rgb(0, 110, 255);
+}
+
+.navbar-nav>li>.dropdown-menu a:hover{
+    background:none;
+}
+
+@media (max-width:1025px){
+    .navbar.navbar-default.fixed{
+        position: relative;
+    }
+
+    .navbar-default .navbar-nav .open .dropdown-menu>li>a{
+        color:white;
+    }
+
+    .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover{
+        color:rgb(81, 162, 255);
+    }
+}
+
+@media (max-width:976px){
+    header .redes_sociales{
+        display:none;
+    }
+}
