@@ -51,3 +51,73 @@ $(document).ready(function () {
         quitaFila(fila);
     });
 });
+
+function enumerar(contenedor)
+{
+    let filas = contenedor.children('tr.fila');
+    contador = 0;
+    filas.each(function(){
+        contador++;
+        let tdNum = $(this).children('td').eq(0);
+        tdNum.text(contador);
+    });
+
+    let filaNoRegistros = contenedor.children('tr.odd');
+    if(contador > 0)
+    {
+        filaNoRegistros.addClass('oculto');
+    }
+    else{
+        filaNoRegistros.removeClass('oculto');
+    }
+}
+
+function agregaFila(contenedor, valor, input, columna)
+{
+    let fila = `<tr class="fila">
+                    <td>
+                    #
+                    </td>
+                    <td>
+                    ${valor}
+                    <input type="hidden" value="${valor}" name="${columna}[]"/>
+                    </td>
+                    <td class="quitar">
+                    <span class="eliminar" title="Eliminar">
+                        <i class="fa fa-times"></i>
+                    </span>
+                    </td>
+                </tr>`;
+
+    contenedor.append(fila);
+    input.val('');
+    input.focus();
+    enumerar(contenedor);
+}
+
+function agregaFilaNominacion(contenedor, valor1, valor2, input, columna1,columna2)
+{
+    let fila = `<tr class="fila">
+                    <td>
+                    #
+                    </td>
+                    <td>
+                    ${valor1}
+                    <input type="hidden" value="${valor1}" name="${columna1}[]"/>
+                    </td>
+                    <td>
+                    ${valor2}
+                    <input type="hidden" value="${valor2}" name="${columna2}[]"/>
+                    </td>
+                    <td class="quitar">
+                    <span class="eliminar" title="Eliminar">
+                        <i class="fa fa-times"></i>
+                    </span>
+                    </td>
+                </tr>`;
+
+    contenedor.append(fila);
+    input.val('');
+    input.focus();
+    enumerar(contenedor);
+}
