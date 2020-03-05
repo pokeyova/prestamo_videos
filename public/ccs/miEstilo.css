@@ -291,3 +291,40 @@ header .redes_sociales div.youtube i:hover{
         display: none;
     }
 }
+/* SUB MENU */
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover{
+    background:rgb(0, 110, 255);
+    color:white;
+}
+
+.navbar-nav>li>.dropdown-menu{
+    background:rgb(33, 152, 231);
+}
+
+.navbar-nav>li>.dropdown-menu:focus{
+    background:rgb(0, 110, 255);
+}
+
+.navbar-nav>li>.dropdown-menu a:hover{
+    background:none;
+}
+
+@media (max-width:1025px){
+    .navbar.navbar-default.fixed{
+        position: relative;
+    }
+
+    .navbar-default .navbar-nav .open .dropdown-menu>li>a{
+        color:white;
+    }
+
+    .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover{
+        color:rgb(81, 162, 255);
+    }
+}
+
+@media (max-width:976px){
+    header .redes_sociales{
+        display:none;
+    }
+}
