@@ -121,3 +121,8 @@ function agregaFilaNominacion(contenedor, valor1, valor2, input, columna1,column
     input.focus();
     enumerar(contenedor);
 }
+function quitaFila(fila){
+fila.remove();
+enumerar();
+
+}
