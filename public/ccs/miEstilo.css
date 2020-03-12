@@ -26,6 +26,10 @@ h1,h2,h3,h4{
     color:rgb(78, 78, 78);
 }
 
+.subrrayado{
+    text-decoration: underline;
+}
+
 .centreado{
     text-align: center;
 }
@@ -38,7 +42,6 @@ h1,h2,h3,h4{
     color:rgb(78, 78, 78); 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
 
 .container{
     margin-top:35px;
@@ -62,6 +65,7 @@ header .logo img{
     height: 100%;
     opacity: 80%;
 }
+
 header .empresa{
     color:rgb(1, 61, 110);
     height: 100%;
@@ -128,6 +132,7 @@ header .usuario .estado i{
     font-size: 0.8em;
     color:rgb(0, 201, 0);
 }
+
 header .redes_sociales{
     background:rgba(255, 255, 255, 0.836);
     position: absolute;
@@ -181,6 +186,7 @@ header .redes_sociales div.youtube i:hover{
     transform: scale(1.1);
     color:rgb(247, 0, 0);
 }
+
 .navbar.navbar-default.scroll{
     background:rgb(199, 0, 0);
 }
@@ -291,6 +297,7 @@ header .redes_sociales div.youtube i:hover{
         display: none;
     }
 }
+
 /* SUB MENU */
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover{
     background:rgb(0, 110, 255);
@@ -328,6 +335,7 @@ header .redes_sociales div.youtube i:hover{
         display:none;
     }
 }
+
 /* FOOTER */
 footer{
     margin-top:40px;
@@ -360,6 +368,8 @@ footer{
     cursor: pointer;
     color:red;
 }
+
+
 /* TABLAS */
 
 .img-table{
@@ -421,7 +431,32 @@ footer{
     transition:0.5s;
 }
 
-.btns-opciones a.ir-evaluacion i{
+.btns-opciones a.ir-evaluacion i
+{
+    color:white;
+    background:black;
+    border: solid 2px rgb(49, 240, 113);
+    border-radius: 50%;
+    padding: 5px 7px;
+    transition:0.5s;
+}
+
+.btns-opciones button.ir-evaluacion{
+    background:transparent;
+    padding: 0px;
+    border-radius: 50%;
+    border:none;
+}
+
+.btns-opciones button.ir-evaluacion:disabled i{
+    color:gray;
+    border: solid 2px gray;
+    cursor: no-drop;
+}
+
+.btns-opciones button.ir-evaluacion i
+{
+    border: none;
     color:white;
     background:black;
     border: solid 2px rgb(49, 240, 113);
@@ -459,11 +494,19 @@ footer{
     cursor: pointer;
 }
 
-.btns-opciones a.ir-evaluacion i:hover{
+.btns-opciones a.ir-evaluacion i:hover,
+.btns-opciones button.ir-evaluacion i:hover{
     color:rgb(49, 240, 113);
     background:white;
     cursor: pointer;
 }
+
+.btns-opciones button.ir-evaluacion:disabled i:hover{
+    color:gray;
+    border: solid 2px gray;
+    cursor: no-drop;
+}
+
 
 input.error{
     border:solid 2px rgb(170, 2, 2);
