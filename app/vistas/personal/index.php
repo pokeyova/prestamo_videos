@@ -53,6 +53,7 @@
                                 <th>Código</th>
                                 <th>Usuario</th>
                                 <th>Nombre</th>
+                                <th>C.I.</th>
                                 <th>Correo</th>
                                 <th>Teléfono</th>
                                 <th>Tipo</th>
@@ -68,11 +69,12 @@
                                 <td><?php echo $contador++;?></td>
                                 <td><?php echo $personal->usuario;?></td>
                                 <td><?php echo $personal->name.' '.$personal->last_name;?></td>
+                                <td><?php echo $personal->ci.' '.$personal->issued;?></td>
                                 <td><?php echo $personal->email;?></td>
                                 <td><?php echo $personal->phone;?></td>
                                 <td><?php echo $personal->tipo;?></td>
                                 <td class="btns-opciones">
-                                    <a href="#" class="evaluar"><i class="fa fa-eye" data-toggle="tooltip" data-placement="left" title="Ver"></i></a>
+                                    <!-- <a href="#" class="evaluar"><i class="fa fa-eye" data-toggle="tooltip" data-placement="left" title="Ver"></i></a> -->
 
                                     <a href="<?php echo RUTA_URL.'/personal/edit/'.$personal->cod_personal;?>" class="modificar"><i class="fa fa-edit" data-toggle="tooltip" data-placement="left" title="Modificar"></i></a>
 
@@ -95,21 +97,22 @@
 
 <script type="text/javascript">
     $(function () {
-        $('.data-table').DataTable({
-            responsive: true,
-            "order": [[ 0, "asc" ]],
-            "columns": [
-                { "width": "5%" },
-                { "width": "5%" },
-                { "width": "20%" },
-                null,
-                null,
-                null,
-                { "width": "17%" },
-            ],
-            pageLength:25,
-            language:lenguaje
-        });
+    $('.data-table').DataTable({
+          responsive: true,
+          "order": [[ 0, "asc" ]],
+          "columns": [
+                    { "width": "2%" },
+                    { "width": "5%" },
+                    { "width": "20%" },
+                    { "width": "8%" },
+                     null,
+                     null,
+                     null,
+                    { "width": "10%" },
+           ],
+           pageLength:25,
+           language:lenguaje
+      });
     });
 
     // ELIMINAR
