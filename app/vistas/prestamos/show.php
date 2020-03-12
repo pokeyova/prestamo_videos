@@ -45,9 +45,106 @@
                             </div>
                         </div>
                     </div>
-                    
-        </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="datos_factura">
+                                <div class="facturar_a">
+                                    <p><strong>Cliente: </strong> <?php echo $datos['prestamo']->cliente?></p>
+                                    <p><strong>NIT/C.I.: </strong> <?php echo $datos['prestamo']->nit?></p>
+                                </div>
+                                <div class="num_fac">
+                                    <p><strong>Fecha: </strong> <?php echo date('d/m/Y',strtotime($datos['prestamo']->borrow_date));?></p>
+                                    <p><strong>Fecha devolución: </strong> <?php echo date('d/m/Y',strtotime($datos['prestamo']->return_date));?></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="factura">
+                                <thead>
+                                    <tr>
+                                        <th>N°</th>
+                                        <th>PRODUCTO</th>
+                                        <th>P/U.(Bs.)</th>
+                                        <th>CANTIDAD</th>
+                                        <th>SUBTOTAL (Bs.)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $cont = 1;   
+                                    ?>
+                                    <?php foreach($datos['detalle_factura'] as $detalle):?>
+                                        <tr>
+                                            <td><?php echo $cont++;?></td>
+                                            <td><?php echo $detalle->title;?></td>
+                                            <td><?php echo $detalle->unit_cost;?></td>
+                                            <td><?php echo $detalle->quantity;?></td>
+                                            <td><?php echo $detalle->total;?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
 
+                                    <tr class="total_final">
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            TOTAL (Bs.)
+                                        </td>
+                                        <td>
+                                            <?php echo $datos['factura']->total;?>
+                                        </td>
+                                    </tr>
+                                    <tr class="total_final">
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            DESCUENTO %
+                                        </td>
+                                        <td>
+                                            <?php echo $datos['descuento'];?>
+                                        </td>
+                                    </tr>
+                                    <tr class="total_final">
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            TOTAL FINAL (Bs.)
+                                        </td>
+                                        <td>
+                                            <?php echo $datos['factura']->end_total;?>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>                  
+                        </div>                            
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="info1">
+                                "ESTA FACTURA CONTRIBUYE AL DESARROLLO DEL PAÍS EL USO ILÍCITO DE ÉSTA SERA SANCIONADO A LEY"
+                            </div>
+                            <div class="info2">
+                                Ley Nº 453: El proveedor debe exhibir certificaciones de habilitación o documentos que acrediten las capacidades u ofertas de servicios.
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a href="<?php echo RUTA_URL.'/borrowing/imprimir/'.$datos['prestamo']->cod_borrowing;?>" target="_blank" class="btn btn-success">
+                                <i class="fa fa-print"></i>
+                                <span>Imprimir</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>                    
+        </div>
     </div>
 </div>
 <br><br>
