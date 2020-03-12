@@ -73,3 +73,4 @@ class Personal extends Controlador{
             header('location:/'.APP_NAME.'/personal/?error');
         }
     }
+}
