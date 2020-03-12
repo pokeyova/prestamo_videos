@@ -63,9 +63,9 @@
                     }
                 }
 
-                return true;
+                return ['resp'=>true,'cod_video'=>$datos["cod_video"]];
             }
-            return false;
+            return ['resp'=>false,'cod_video'=>null];
         }   
 
         public function actualizarVideo($datos,$id){
@@ -185,6 +185,21 @@
             return $this->db->registro();
         }
 
+        public function actualizaStock($id,$cantidad,$tipo)
+        {
+            $video = $this->video($id);
+            $cantidad_actual = $video->stock;
+            if($tipo == 'NUEVO')
+            {
+                $cantidad_actual = $cantidad_actual + $cantidad;
+            }
+            else{
+                $cantidad_actual = $cantidad_actual - $cantidad;
+            }
+            $this->db->query("UPDATE video SET stock=".$cantidad_actual." WHERE cod_video = '".$id."'");
+            return $this->db->execute();
+        }
+
         public function actualizarStatus($id, $valor){
             $this->db->query("UPDATE video SET status=".$valor." WHERE cod_video = '".$id."'");
             return $this->db->execute();
@@ -203,6 +218,7 @@
             $lista = $this->db->registros();
             return $lista;
         }
+
         public function ultimoRegistro()
         {
             $this->db->query("SELECT cod_video FROM video ORDER BY cod_video DESC LIMIT 1");
@@ -231,5 +247,41 @@
             return $lista;
         }
 
-                
+        /* ********************************** */
+        /*            COPIAS Y BAJAS          */
+        /* ********************************** */
+
+        public function copias($datos)
+        {
+            $this->db->query("INSERT INTO copy_entry (`quantity`,`date`,`cod_video`) VALUES(".$datos['quantity'].",'".$datos['date']."','".$datos['cod_video']."')");
+            $this->db->execute();
+            // ACTUALIZAR EL STOCK
+            return $this->actualizaStock($datos['cod_video'],$datos['quantity'],'NUEVO');
+        }
+
+        public function bajas($datos)
+        {
+            $this->db->query("INSERT INTO unsubscribe (`quantity`,`reason`,`date`,`cod_video`) VALUES(".$datos['quantity'].",'".$datos['reason']."','".$datos['date']."','".$datos['cod_video']."')");
+            $this->db->execute();
+            // ACTUALIZAR EL STOCK
+            return $this->actualizaStock($datos['cod_video'],$datos['quantity'],'BAJAS');
+        }
+
+
+        /* ***************************************************** */
+        /*                  CONSULTAS VARIAS                    */
+        /* ***************************************************** */
+        public function mayorDuracionDrama()
+        {
+            $this->db->query("SELECT v.* FROM video v INNER JOIN genre g on g.id = v.genre_id WHERE name='DRAMA' ORDER BY duration DESC LIMIT 3");
+            $lista = $this->db->registros();
+            return $lista;
+        }
+
+        public function masAlquiladosPocoStock()
+        {
+            $this->db->query("SELECT SUM(b.quantity) as cantidad, v.stock as stock, v.title as titulo FROM borrowing_videos b INNER JOIN video v on v.cod_video = b.cod_video GROUP BY b.cod_video ORDER BY cantidad DESC, stock ASC LIMIT 3");
+            $lista = $this->db->registros();
+            return $lista;
+        }
     }
