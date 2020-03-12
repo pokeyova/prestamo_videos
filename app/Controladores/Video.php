@@ -10,6 +10,7 @@ class Video extends Controlador{
         $this->actor = $this->modelo('MActor');
         $this->genero = $this->modelo('MGenre');
         $this->costo = $this->modelo('MCost');
+        $this->audit = $this->modelo('MAudit');
     }
 
     public function index(){
@@ -62,8 +63,18 @@ class Video extends Controlador{
         }
 
         $respuesta = $this->video->registrarVideo($request);
-        if($respuesta)
+        if($respuesta['resp'])
         {
+            // si registra el video registrar en la tabla audit
+            session_start();
+            $this->audit->registrarAuditoria([
+                'cod_user'=> $_SESSION['cod_user'],
+                'cod_video'=> $respuesta['cod_video'],
+                'action'=> 'REGISTRO',
+                'quantity'=> $request['quantity'],
+                'date'=> date('Y-m-d'),
+                'time'=> date('H:i:s')
+            ]);
             header('location:sisvideo/video?bien');
         }
         else{
@@ -71,6 +82,26 @@ class Video extends Controlador{
         }
     }
 
+    public function show($id){
+        $video = $this->video->video($id);
+        $nominaciones = $this->nominacion->nominacionesVideo($id);
+        $alternativos = $this->alternativo->alternativosVideo($id);
+        $actores = $this->actor->actoresVideo($id);
+
+        $generos = $this->genero->lista();
+        $costos = $this->costo->lista();
+
+        $this->vista('videos/show',[
+            'request' => 'video',
+            'video' => $video,
+            'nominaciones' => $nominaciones,
+            'alternativos' => $alternativos,
+            'actores' => $actores,
+            'generos' => $generos,
+            'costos' => $costos,
+        ]);
+    }
+    
     public function edit($id){
         $video = $this->video->video($id);
         $nominaciones = $this->nominacion->nominacionesVideo($id);
@@ -101,10 +132,21 @@ class Video extends Controlador{
         $respuesta = $this->video->actualizarVideo($request,$id);
         if($respuesta)
         {
-            header('location:/sisvideo/video?modificado');
+            // si modifica un video registrar en la tabla audit
+            session_start();
+            $this->audit->registrarAuditoria([
+                'cod_user'=> $_SESSION['cod_user'],
+                'cod_video'=> $id,
+                'action'=> 'MODIFICACIÓN',
+                'quantity'=> $request['quantity'],
+                'date'=> date('Y-m-d'),
+                'time'=> date('H:i:s')
+            ]);
+
+            header('location:/'.APP_NAME.'/video?modificado');
         }
         else{
-            header('location:/sisvideo/video/edit/'.$id.'?error');
+            header('location:/'.APP_NAME.'/video/edit/'.$id.'?error');
         }
     }
 
@@ -112,10 +154,123 @@ class Video extends Controlador{
         $respuesta = $this->video->actualizarStatus($id,0);
         if($respuesta)
         {
-            header('location:/sisvideo/video?eliminado');
+            // si modifica elimina un video registrar en la tabla audit
+            session_start();
+            $this->audit->registrarAuditoria([
+                'cod_user'=> $_SESSION['cod_user'],
+                'cod_video'=> $id,
+                'action'=> 'ELIMINACIÓN',
+                'quantity'=> '1',
+                'date'=> date('Y-m-d'),
+                'time'=> date('H:i:s')
+            ]);
+
+            header('location:/'.APP_NAME.'/video?eliminado');
         }
         else{
-            header('location:/sisvideo/video/?error');
+            header('location:/'.APP_NAME.'/video/?error');
         }
+    }
+
+     public function infoVideo($id)
+    {
+        $video = $this->video->video($id);
+        $costo = $this->costo->costo($video->cod_cost);
+
+        echo json_encode([
+            'title' => $video->title,
+            'costo_unitario' => $costo->unit_cost,
+            'costo1' => $costo->cost_one_day,
+            'costo2' => $costo->cost_two_day,
+            'costo3' => $costo->cost_three_day,
+            'costo4' => $costo->cost_four_day,
+            'costo5' => $costo->cost_five_day,
+        ]);
+    }
+
+    public function copias($id)
+    {
+        $request = [];
+        if(isset($_REQUEST))
+        {
+            $request = $_REQUEST;
+        }
+
+        $video = $this->video->video($id);
+        // REGISTRAR COPIAS. LA ACTUALIZACION DEL STOCK SE HACE DENTRO DE LA FUNCION
+        $resp = $this->video->copias([
+            'quantity' => $request['cantidad'],
+            'date' => date('Y-m-d'),
+            'cod_video' => $video->cod_video
+        ]);
+
+        if($resp)
+        {
+            //SI LA RESP. ES TRUE REGISTRAR LA AUDITORIA
+            session_start();
+            $this->audit->registrarAuditoria([
+                'cod_user'=> $_SESSION['cod_user'],
+                'cod_video'=> $video->cod_video,
+                'action'=> 'COPIAS',
+                'quantity'=> $request['cantidad'],
+                'date'=> date('Y-m-d'),
+                'time'=> date('H:i:s')
+            ]);
+        }
+
+        header('location:/'.APP_NAME.'/video?bien');
+
+    }
+
+    public function bajas($id)
+    {
+        $request = [];
+        if(isset($_REQUEST))
+        {
+            $request = $_REQUEST;
+        }
+
+        $video = $this->video->video($id);
+        // REGISTRAR BAJAS. LA ACTUALIZACION DEL STOCK SE HACE DENTRO DE LA FUNCION
+        $resp = $this->video->bajas([
+            'quantity' => $request['cantidad'],
+            'reason' => $request['reason'],
+            'date' => date('Y-m-d'),
+            'cod_video' => $video->cod_video
+        ]);
+
+        if($resp)
+        {
+            //SI LA RESP. ES TRUE REGISTRAR LA AUDITORIA
+            session_start();
+            $this->audit->registrarAuditoria([
+                'cod_user'=> $_SESSION['cod_user'],
+                'cod_video'=> $video->cod_video,
+                'action'=> 'BAJAS',
+                'quantity'=> $request['cantidad'],
+                'date'=> date('Y-m-d'),
+                'time'=> date('H:i:s')
+            ]);
+        }
+
+        header('location:/'.APP_NAME.'/video?bien');
+    }
+
+    public function mayorDuracionDrama()
+    {
+        $videos = $this->video->mayorDuracionDrama();
+        $this->vista('videos/mayorDuracion',[
+            'request' => 'video',
+            'videos' => $videos,
+        ]);
+    }
+
+    public function masAlquiladosPocoStock()
+    {
+        $videos = $this->video->masAlquiladosPocoStock();
+        $this->vista('videos/masAlquilados',[
+            'request' => 'video',
+            'videos' => $videos,
+        ]);
     }
 }
