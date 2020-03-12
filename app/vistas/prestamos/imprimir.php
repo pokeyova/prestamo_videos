@@ -50,6 +50,66 @@
     </div>
    
 
+ <table class="factura">
+        <thead>
+            <tr>
+                <th>N°</th>
+                <th>PRODUCTO</th>
+                <th>P/U.(Bs.)</th>
+                <th>CANTIDAD</th>
+                <th>SUBTOTAL (Bs.)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $cont = 1;   
+            ?>
+            <?php foreach($datos['detalle_factura'] as $detalle):?>
+                <tr>
+                    <td><?php echo $cont++;?></td>
+                    <td><?php echo $detalle->title;?></td>
+                    <td><?php echo $detalle->unit_cost;?></td>
+                    <td><?php echo $detalle->quantity;?></td>
+                    <td><?php echo $detalle->total;?></td>
+                </tr>
+            <?php endforeach; ?>
+
+            <tr class="total_final">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>
+                    TOTAL (Bs.)
+                </td>
+                <td>
+                    <?php echo $datos['factura']->total;?>
+                </td>
+            </tr>
+            <tr class="total_final">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>
+                    DESCUENTO %
+                </td>
+                <td>
+                    <?php echo $datos['descuento'];?>
+                </td>
+            </tr>
+            <tr class="total_final">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>
+                    TOTAL FINAL (Bs.)
+                </td>
+                <td>
+                    <?php echo $datos['factura']->end_total;?>
+                </td>
+            </tr>
+        </tbody>
+    </table> 
+
     <div class="info1">
         "ESTA FACTURA CONTRIBUYE AL DESARROLLO DEL PAÍS EL USO ILÍCITO DE ÉSTA SERA SANCIONADO A LEY"
     </div>
