@@ -5,7 +5,7 @@
     $infoPersonal = $personal->personalUsuario($_SESSION['cod_user']);
     if(!isset($_SESSION['cod_user']) && !isset($_SESSION['name']) && !isset($_SESSION['type']))
     {
-        header('location:/sisvideo');
+        header('location:/'.APP_NAME.'');
     }
 ?>
 
@@ -25,9 +25,9 @@
     <link rel="stylesheet" href="<?php echo RUTA_URL; ?>/public/css/miEstilo.css">
     <link rel="stylesheet" href="<?php echo RUTA_URL; ?>/public/css/clienteCreate.css">
     <link rel="stylesheet" href="<?php echo RUTA_URL; ?>/public/css/prestamos.css">
+    <link rel="stylesheet" href="<?php echo RUTA_URL; ?>/public/css/verPrestamo.css">
 </head>
 <body>
-
 
 <header id="header">
     <div class="logo">
@@ -55,13 +55,13 @@
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <!-- <a class="navbar-brand" href="/sisvideo/borrowing">PRESTAMOS</a> -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+            <!-- <a class="navbar-brand" href="/'.APP_NAME.'/borrowing">PRESTAMOS</a> -->
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

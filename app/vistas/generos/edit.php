@@ -4,10 +4,10 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-           <h3 class="titulo_form">GÉNEROS</h3>
+            <h3 class="titulo_form">GÉNEROS</h3>
         </div>
-        
-        <form action="<?php echo '/sisvideo/genre/update/'.$datos['genre']->id;?>" method="post">
+
+        <form action="<?php echo '/'.APP_NAME.'/genre/update/'.$datos['genre']->id;?>" method="post">
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -15,10 +15,10 @@
                     </div>
                     <div class="panel-body">
                         <?php if(isset($_GET['error'])): ?>
-                        <div class="alert alert-danger">
-                            <button class="close" data-dismiss="alert">&times;</button>
-                            Algo salió mal intente nuevamente por favor
-                        </div>
+                            <div class="alert alert-danger">
+                                <button class="close" data-dismiss="alert">&times;</button>
+                                Algo salió mal intente nuevamente por favor
+                            </div>
                         <?php endif; ?>
                         <div class="row">
                             <div class="col-md-4">
@@ -50,3 +50,4 @@
 
 </body>
 </html>
+
