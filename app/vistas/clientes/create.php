@@ -7,7 +7,7 @@
            <h3 class="titulo_form">CLIENTE</h3>
         </div>
         
-        <form action="<?php echo '/sisvideo/client/store';?>" method="post">
+        <form action="<?php echo '/'.APP_NAME.'/client/store';?>" method="post">
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -103,13 +103,9 @@
     </div>
 </div>
 
-
-
 <?php require RUTA.'/vistas/inc/footer.php';?>
 
 <script src="<?php echo RUTA_URL;?>/public/js/geolocalizacion.js"></script>
 
-
 </body>
 </html>
-

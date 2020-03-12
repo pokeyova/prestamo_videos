@@ -7,7 +7,7 @@
            <h3 class="titulo_form">CLIENTE</h3>
         </div>
         
-        <form action="<?php echo '/sisvideo/client/update/'.$datos['cliente']->cod_client;?>" method="post">
+        <form action="<?php echo '/'.APP_NAME.'/client/update/'.$datos['cliente']->cod_client;?>" method="post">
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">

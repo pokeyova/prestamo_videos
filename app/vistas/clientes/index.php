@@ -79,7 +79,7 @@
                                 <td><?php echo $cliente->registration_date;?></td>
                                 <td><?php if($m_client->bloqueo($cliente->cod_client)): ?> BLOQUEADO<?php else: ?> ACTIVO<?php endif; ?></td>
                                 <td class="btns-opciones">
-                                    <a href="#" class="evaluar"><i class="fa fa-eye" data-toggle="tooltip" data-placement="left" title="Ver"></i></a>
+                                    <a href="<?php echo '/'.APP_NAME.'/client/show/'.$cliente->cod_client;?>" class="evaluar"><i class="fa fa-eye" data-toggle="tooltip" data-placement="left" title="Ver"></i></a>
 
                                     <a href="<?php echo RUTA_URL.'/client/edit/'.$cliente->cod_client;?>" class="modificar"><i class="fa fa-edit" data-toggle="tooltip" data-placement="left" title="Modificar"></i></a>
 
@@ -104,7 +104,6 @@
 
     </div>
 </div>
-
 <br>
 <?php require RUTA.'/vistas/modal/eliminar.php';?>
 <?php require RUTA.'/vistas/modal/bloquear.php';?>
@@ -113,21 +112,21 @@
 
 <script type="text/javascript">
     $(function () {
-        $('.data-table').DataTable({
-            responsive: true,
-            "order": [[ 0, "asc" ]],
-            "columns": [
-                { "width": "5%" },
-                { "width": "5%" },
-                { "width": "20%" },
-                null,
-                null,
-                null,
-                { "width": "20%" },
-            ],
-            pageLength:25,
-            language:lenguaje
-        });
+    $('.data-table').DataTable({
+          responsive: true,
+          "order": [[ 0, "asc" ]],
+          "columns": [
+                    { "width": "5%" },
+                    { "width": "5%" },
+                    { "width": "20%" },
+                     null,
+                     null,
+                     null,
+                    { "width": "20%" },
+           ],
+           pageLength:25,
+           language:lenguaje
+      });
     });
 
     // ELIMINAR
