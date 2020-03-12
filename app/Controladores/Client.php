@@ -39,6 +39,14 @@ class Client extends Controlador{
         }
     }
 
+    public function show($id){
+        $cliente = $this->client->cliente($id);
+        $this->vista('clientes/show',[
+            'request' => 'client',
+            'cliente' => $cliente,
+        ]);
+    }
+
     public function edit($id){
         $cliente = $this->client->cliente($id);
         $this->vista('clientes/edit',[
@@ -46,6 +54,7 @@ class Client extends Controlador{
             'cliente' => $cliente,
         ]);
     }
+
 
     public function update($id){
         $request = [];
@@ -56,10 +65,10 @@ class Client extends Controlador{
         $respuesta = $this->client->actualizarCliente($request,$id);
         if($respuesta)
         {
-            header('location:/sisvideo/client?modificado');
+            header('location:/'.APP_NAME.'/client?modificado');
         }
         else{
-            header('location:/sisvideo/client/edit/'.$id.'?error');
+            header('location:/'.APP_NAME.'/client/edit/'.$id.'?error');
         }
     }
 
@@ -75,21 +84,22 @@ class Client extends Controlador{
         $respuesta = $this->bloqueo->registrarBloqueo($request);
         if($respuesta)
         {
-            header('location:/sisvideo/client?bloqueado');
+            header('location:/'.APP_NAME.'/client?bloqueado');
         }
         else{
-            header('location:/sisvideo/client?error');
+            header('location:/'.APP_NAME.'/client?error');
         }
     }
+
     public function desbloquear($id)
-    {
+    {   
         $respuesta = $this->bloqueo->actualizarStatus($id,0);
         if($respuesta)
         {
-            header('location:/sisvideo/client?desbloqueado');
+            header('location:/'.APP_NAME.'/client?desbloqueado');
         }
         else{
-            header('location:/sisvideo/client/?error');
+            header('location:/'.APP_NAME.'/client/?error');
         }
     }
 
@@ -97,10 +107,10 @@ class Client extends Controlador{
         $respuesta = $this->client->actualizarStatus($id,0);
         if($respuesta)
         {
-            header('location:/sisvideo/client?eliminado');
+            header('location:/'.APP_NAME.'/client?eliminado');
         }
         else{
-            header('location:/sisvideo/client/?error');
+            header('location:/'.APP_NAME.'/client/?error');
         }
     }
 }

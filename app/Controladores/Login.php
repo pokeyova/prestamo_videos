@@ -11,7 +11,7 @@ class Login extends Controlador{
         session_start();
         if(isset($_SESSION['cod_user']) && isset($_SESSION['name']) && isset($_SESSION['type']))
         {
-            header('location:/sisvideo/borrowing');
+            header('location:/'.APP_NAME.'/borrowing');
         }
         $this->vista('auth/login',[
                                     'empresa' => 'Video club "Media"',
@@ -38,10 +38,10 @@ class Login extends Controlador{
             $_SESSION['name'] = $user->name;
             $_SESSION['type'] = $user->type;
             
-            header('location:/sisvideo/borrowing');
+            header('location:/'.APP_NAME.'/borrowing');
         }
         else{
-            header('location:/sisvideo/login?name='.$name);
+            header('location:/'.APP_NAME.'/login?name='.$name);
         }
     }
 
@@ -49,7 +49,7 @@ class Login extends Controlador{
     {
         session_start();
         session_destroy();
-        header('location:/sisvideo');
+        header('location:/'.APP_NAME.'');
     }
 
 }

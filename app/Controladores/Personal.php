@@ -56,10 +56,10 @@ class Personal extends Controlador{
         $respuesta = $this->personal->actualizarPersonal($request,$id);
         if($respuesta)
         {
-            header('location:/sisvideo/personal?modificado');
+            header('location:/'.APP_NAME.'/personal?modificado');
         }
         else{
-            header('location:/sisvideo/personal/edit/'.$id.'?error');
+            header('location:/'.APP_NAME.'/personal/edit/'.$id.'?error');
         }
     }
 
@@ -67,10 +67,9 @@ class Personal extends Controlador{
         $respuesta = $this->personal->actualizarStatus($id,0);
         if($respuesta)
         {
-            header('location:/sisvideo/personal?eliminado');
+            header('location:/'.APP_NAME.'/personal?eliminado');
         }
         else{
-            header('location:/sisvideo/personal/?error');
+            header('location:/'.APP_NAME.'/personal/?error');
         }
     }
-}

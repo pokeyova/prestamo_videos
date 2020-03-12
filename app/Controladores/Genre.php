@@ -56,10 +56,10 @@ class Genre extends Controlador{
         $respuesta = $this->genre->actualizarGenre($request,$id);
         if($respuesta)
         {
-            header('location:/sisvideo/genre?modificado');
+            header('location:/'.APP_NAME.'/genre?modificado');
         }
         else{
-            header('location:/sisvideo/genre/edit/'.$id.'?error');
+            header('location:/'.APP_NAME.'/genre/edit/'.$id.'?error');
         }
     }
 
@@ -78,10 +78,10 @@ class Genre extends Controlador{
             $respuesta = $this->genre->delete($id);
             if($respuesta)
             {
-                header('location:/sisvideo/genre?eliminado');
+                header('location:/'.APP_NAME.'/genre?eliminado');
             }
             else{
-                header('location:/sisvideo/genre/?error');
+                header('location:/'.APP_NAME.'/genre/?error');
             }
         }
     }
