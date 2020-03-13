@@ -9,17 +9,14 @@
 
         public function registrarAuditoria($datos)
         {
-            $codigo = '';
+            $this->db->query("INSERT INTO `audit` (`cod_user`,`cod_video`,`action`,`quantity`,`date`,`time`) VALUES('".$datos['cod_user']."','".$datos['cod_video']."','".$datos['action']."',".$datos['quantity'].",'".$datos['date']."','".$datos['time']."')");
 
-            $this->db->query("INSERT INTO cost VALUES('".$codigo."',".$datos["unit_cost"].",".$datos["cost_one_day"].",".$datos["cost_two_day"].",".$datos["cost_three_day"].",".$datos["cost_four_day"].",".$datos["cost_five_day"].")");
-
-            $this->db->execute();
+            return $this->db->execute();
         }   
         
         public function lista()
         {
-            $this->db->query("SELECT a.*, CONCAT(p.name,' ',p.last_name) as usuario, v.title FROM audit a INNER JOIN user u on u.cod_user = a.cod_user INNER JOIN video v on v.cod_video = a.cod_video INNER JOIN personal p on p.cod_user = u.cod_user");
+            $this->db->query("SELECT a.*, CONCAT(p.name,' ',p.last_name) as usuario, v.title as video,u.name as user FROM audit a LEFT JOIN user u on u.cod_user = a.cod_user LEFT JOIN video v on v.cod_video = a.cod_video LEFT JOIN personal p on p.cod_user = u.cod_user");
             return $this->db->registros();
         }
-
     }
