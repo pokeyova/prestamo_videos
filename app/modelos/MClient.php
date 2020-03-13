@@ -27,6 +27,7 @@
             $lista = $this->db->registros();
             return $lista;
         }
+
         public function registrarCliente($datos)
         {
             $ultimo_client = $this->ultimoRegistro();
@@ -77,6 +78,4 @@
             $this->db->query("SELECT * FROM client WHERE cod_client = '$id'");
             return $this->db->registro();
         }
-
-        
     }
